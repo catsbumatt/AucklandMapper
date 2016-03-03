@@ -1,4 +1,4 @@
-package mapper;
+package Mapper;
 
 import java.util.*;
 
@@ -7,15 +7,17 @@ public class AStarNode implements Comparable<AStarNode> {
 	private Node fromNode;
 	private double costToHere;
 	private double estimate;
+	private AStarNode parent;
 	
 	//private Segment segment;
 
 
-	public AStarNode(Node start, Node from, double costToHere, double est){
+	public AStarNode(Node start, Node from, double costToHere, double est, AStarNode parent){
 		node = start;
 		fromNode = from;
 		this.setCostToHere(costToHere);
 		estimate = est;
+		this.setParent(parent);
 		//setSegment(seg);
 	}
 
@@ -60,9 +62,18 @@ public class AStarNode implements Comparable<AStarNode> {
 	}
 
 
-	@Override
 	public int compareTo(AStarNode o) {
 		return (int)(Math.signum(this.getEstimate() - o.getEstimate()));
+	}
+
+
+	public AStarNode getParent() {
+		return parent;
+	}
+
+
+	public void setParent(AStarNode parent) {
+		this.parent = parent;
 	}
 
 	
